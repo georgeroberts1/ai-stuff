@@ -1,4 +1,4 @@
-import { geometry } from "./geometry.js";
+import { flatOnTile, geometry } from "./geometry.js";
 import { MIRROR, TILES, WALL } from "./tiles.js";
 
 const esc = (s) => s.replace(/[&<>"']/g, (c) => `&#${c.charCodeAt(0)};`);
@@ -14,7 +14,7 @@ const spot = (t, i) => {
   const { points, clip, cx, cy } = geometry(t.corners, WALL);
   return `<div class="spot" data-id="${i}" style="--cx:${cx}%;--cy:${cy}%;--clip:${clip}">
   <svg viewBox="0 0 ${WALL.width} ${WALL.height}" preserveAspectRatio="none" aria-hidden="true"><polygon points="${points}"/></svg>
-  <span class="glyph" aria-hidden="true">${esc(t.emoji)}</span>
+  <span class="glyph" aria-hidden="true"><span>${esc(t.emoji)}</span></span>
   <button class="pin" type="button" aria-expanded="false" aria-label="Show ${esc(t.title)}"></button>
   <a class="tag" ${link(t)}>${text(t)}</a>
 </div>`;
@@ -38,6 +38,22 @@ const mark = (html, t) => (t.hidden ? html.replace(/^<(div|a) class="(spot|card)
 
 document.getElementById("spots").innerHTML = shown.map((t, i) => mark(spot(t, i), t)).join("");
 document.getElementById("links").innerHTML = shown.map((t, i) => mark(card(t, i), t)).join("");
+
+// Each emoji lies flat on its tile: a tile-shaped box warped onto the tile's four corners, with the
+// emoji at one size (GLYPH photo pixels, never under 20 screen pixels) in the middle of it.
+const GLYPH = 22;
+const layoutGlyphs = () => {
+  const layer = document.querySelector(".layer");
+  const scale = layer.clientWidth / WALL.width;
+  const size = Math.max(GLYPH, 20 / scale);
+  document.querySelectorAll(".spot").forEach((el) => {
+    const { w, h, matrix } = flatOnTile(shown[Number(el.dataset.id)].corners, scale);
+    const glyph = el.querySelector(".glyph");
+    glyph.style.cssText = `width:${w}px;height:${h}px;font-size:${size}px;transform:${matrix}`;
+  });
+};
+layoutGlyphs();
+new ResizeObserver(layoutGlyphs).observe(document.querySelector(".layer"));
 
 const setOpen = (id) => {
   for (const el of document.querySelectorAll("[data-id]")) el.classList.toggle("open", el.dataset.id === id);

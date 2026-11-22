@@ -60,4 +60,11 @@ export const TILES = [
     href: "https://georgeroberts1.github.io/tonights-sky/",
     corners: [[800, 160], [829, 162], [828, 197], [799, 196]],
   },
+  {
+    emoji: "🕵️",
+    title: "Conspiracy or Real?",
+    blurb: "A quiz game: did it really happen, or did we make it up?",
+    href: "https://georgeroberts1.github.io/conspiracy-or-real/",
+    corners: [[641, 117], [674, 117], [675, 153], [642, 153]],
+  },
 ];

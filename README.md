@@ -38,6 +38,7 @@ Each one lives in its own repo and is linked from a tile.
 - 🎶 [Choirmash](https://choirmash-v2.vercel.app/) is an app for choir singers to sing together remotely.
 - ⚽ [Match Ranker](https://match-ranker.vercel.app/) ranks Premier League football matches.
 - 🔭 [Tonight's Sky](https://georgeroberts1.github.io/tonights-sky/) shows the Moon, planets and stars above your town tonight.
+- 🕵️ [Conspiracy or Real?](https://georgeroberts1.github.io/conspiracy-or-real/) is a quiz game: did it really happen, or did we make it up?
 
 The photo is a CC0 image from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Old_bathroom_with_subway_tiles.JPG). `pnpm optimize` turns the 6.9 MB original into AVIF, WebP and JPEG files at six widths (the 1600px AVIF is 51 KB, the 828px phone file 20 KB), and the page picks one with `srcset`.
 

@@ -70,4 +70,11 @@ export const TILES = [
     href: "https://georgeroberts1.github.io/conspiracy-or-real/",
     corners: [[641, 117], [674, 117], [675, 153], [642, 153]],
   },
+  {
+    emoji: "🔤",
+    title: "Anagram Ring",
+    blurb: "Type some letters and shuffle them around a ring to solve the anagram yourself.",
+    href: "https://claude.ai/artifact/AXQdHrDkDhM8zd2cUrJkYN",
+    corners: [[515, 435], [566, 417], [566, 449], [517, 467]],
+  },
 ];

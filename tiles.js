@@ -28,8 +28,8 @@ export const TILES = [
   },
   {
     emoji: "🚶",
-    title: "Thames Path",
-    blurb: "A walk tracker for the Thames Path.",
+    title: "Trail Tracker",
+    blurb: "A walk tracker for UK trails.",
     href: "https://walk-tracker-omega.vercel.app/?completed=7%2C8%2C9%2C10%2C11%2C12%2C13%2C14",
     corners: [[498, 218], [554, 210], [555, 248], [500, 257]],
   },

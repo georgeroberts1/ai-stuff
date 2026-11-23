@@ -81,7 +81,7 @@ export const TILES = [
     emoji: "🎧",
     title: "Song Snippets",
     blurb: "A game where you guess the song from a brief clip.",
-    href: "https://song-endings.vercel.app/",
+    href: "https://song-fade.vercel.app/",
     corners: [[341, 180], [416, 175], [419, 220], [347, 228]],
   },
 ];

@@ -3,7 +3,7 @@ import { existsSync, readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { test } from "node:test";
 import config from "../vite.config.js";
-import { geometry } from "../geometry.js";
+import { flatOnTile, geometry } from "../geometry.js";
 import { TILES, WALL } from "../tiles.js";
 
 const root = resolve(import.meta.dirname, "..");
@@ -74,4 +74,18 @@ test("every image in index.html's srcsets exists in public/", () => {
   const files = [...html.matchAll(/\b(img\/[\w.-]+)\s+\d+w/g)].map((m) => m[1]);
   assert.ok(files.length > 0, "found no srcset images");
   for (const f of new Set(files)) assert.ok(existsSync(resolve(root, "public", f)), `${f} is missing from public/`);
+});
+
+test("flatOnTile maps its box onto the tile's corners", () => {
+  const corners = [[515, 435], [566, 417], [566, 449], [517, 467]];
+  const { w, h, matrix } = flatOnTile(corners);
+  const m = matrix.match(/matrix3d\((.*)\)/)[1].split(",").map(Number);
+  const at = (x, y) => {
+    const d = m[3] * x + m[7] * y + m[15];
+    return [(m[0] * x + m[4] * y + m[12]) / d, (m[1] * x + m[5] * y + m[13]) / d];
+  };
+  for (const [[x, y], [u, v]] of [[[0, 0], corners[0]], [[w, 0], corners[1]], [[w, h], corners[2]], [[0, h], corners[3]]]) {
+    const [px, py] = at(x, y);
+    assert.ok(Math.abs(px - u) < 1e-6 && Math.abs(py - v) < 1e-6, `(${x},${y}) lands at ${px},${py}, not ${u},${v}`);
+  }
 });

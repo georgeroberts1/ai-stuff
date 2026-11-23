@@ -44,7 +44,7 @@ Each one lives in its own repo and is linked from a tile.
 - 🔭 [Tonight's Sky](https://georgeroberts1.github.io/tonights-sky/) shows the Moon, planets and stars above your town tonight.
 - 🕵️ [Conspiracy or Real?](https://georgeroberts1.github.io/conspiracy-or-real/) is a quiz game: did it really happen, or did we make it up?
 - 🔤 [Anagram Ring](https://claude.ai/artifact/AXQdHrDkDhM8zd2cUrJkYN) lets you type some letters and shuffle them around a ring to solve the anagram yourself.
-- 🎧 [Song Snippets](https://song-endings.vercel.app/) is a game where you guess the song from a brief clip.
+- 🎧 [Song Snippets](https://song-fade.vercel.app/) is a game where you guess the song from a brief clip.
 
 The photo is a CC0 image from [Wikimedia Commons](https://commons.wikimedia.org/wiki/File:Old_bathroom_with_subway_tiles.JPG). `pnpm optimize` turns the 6.9 MB original into AVIF, WebP and JPEG files at six widths (the 1600px AVIF is 51 KB, the 828px phone file 20 KB), and the page picks one with `srcset`.
 
